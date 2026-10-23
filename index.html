@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark light">
+  <title>N • Asset Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="N Asset Gallery home">
+        <span class="brand-mark">N<span>+</span></span>
+        <span><strong data-i18n="brand">Asset Gallery</strong><small data-i18n="brandSub">LOCAL LIBRARY · OFFLINE</small></span>
+      </a>
+      <div class="top-actions">
+        <span class="offline-pill"><i></i><span data-i18n="offline">Offline-ready</span></span>
+        <select id="languageSelect" class="language-select" aria-label="Language">
+          <option value="en">EN</option><option value="fr">FR</option><option value="ar">AR</option>
+        </select>
+        <button id="themeToggle" class="icon-button" aria-label="Toggle dark mode" title="Toggle theme">☼</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="eyebrow">YOUR LOCAL VISUAL WORKSPACE</span></div>
+          <h1 data-i18n="heroTitle">Every asset.<br><span>One clear view.</span></h1>
+          <p data-i18n="heroText">Browse Assembly and Cutting folders, preview images instantly, and find an asset by its filename — all on this computer.</p>
+          <div class="hero-stats">
+            <div><strong id="statFolders">—</strong><span data-i18n="statFolders">Main folders</span></div>
+            <div><strong id="statImages">0</strong><span data-i18n="statImages">Images indexed</span></div>
+            <div><strong id="statShown">0</strong><span data-i18n="statShown">Currently shown</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+          <div class="art-core"><span>IMG</span><b>▧</b></div>
+          <div class="float-card float-card-a"><span class="mini-icon">▧</span><span><b>Assembly</b><small>Asset collection</small></span><i>↗</i></div>
+          <div class="float-card float-card-b"><span class="mini-icon orange">⌕</span><span><b>Quick search</b><small>Find by filename</small></span><i>⌕</i></div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="section-heading">
+          <div><span class="section-kicker" data-i18n="workspaceKicker">BROWSE LIBRARY</span><h2 data-i18n="workspaceTitle">Find your asset</h2></div>
+          <span class="privacy-note"><span>●</span><span data-i18n="privacy">Files stay on your device</span></span>
+        </div>
+
+        <div class="setup-card">
+          <div class="setup-number">01</div>
+          <div class="setup-content">
+            <label for="rootPicker" class="field-label" data-i18n="chooseRoot">Choose your main folder</label>
+            <p data-i18n="rootHint">Select C:\\Eren\\N. The app will read its folder structure locally.</p>
+            <div class="picker-row">
+              <button id="pickFolderBtn" class="primary-button"><span>＋</span><span data-i18n="selectFolder">Select folder</span></button>
+              <span id="rootStatus" class="file-status" data-i18n="notSelected">No folder selected</span>
+              <input id="rootPicker" type="file" webkitdirectory directory multiple hidden>
+            </div>
+          </div>
+          <div class="setup-badge">LOCAL</div>
+        </div>
+
+        <div class="filters-grid">
+          <div class="filter-card">
+            <div class="filter-top"><span class="step-dot">02</span><label for="mainFolder" data-i18n="mainFolderLabel">Main folder</label></div>
+            <select id="mainFolder" disabled><option value="" data-i18n="selectMain">Select Assembly or Cutting…</option></select>
+            <small data-i18n="mainFolderHint">The first level inside your selected root</small>
+          </div>
+          <div class="filter-card">
+            <div class="filter-top"><span class="step-dot">03</span><label for="subFolder" data-i18n="subFolderLabel">Subfolder / asset group</label></div>
+            <select id="subFolder" disabled><option value="" data-i18n="allSubfolders">All subfolders</option></select>
+            <small data-i18n="subFolderHint">Choose a folder to narrow the gallery</small>
+          </div>
+        </div>
+
+        <div class="search-panel">
+          <div class="search-wrap"><span class="search-symbol">⌕</span><input id="searchInput" type="search" placeholder="Search image name (e.g. g54644)..." data-i18n-placeholder="searchPlaceholder" disabled><button id="clearSearch" aria-label="Clear search" title="Clear search">×</button></div>
+          <div class="search-controls">
+            <select id="typeFilter" aria-label="Image type" disabled><option value="all" data-i18n="allTypes">All image types</option><option value="image">Images only</option></select>
+            <select id="sortSelect" aria-label="Sort images"><option value="name" data-i18n="sortName">Name A–Z</option><option value="nameDesc" data-i18n="sortNameDesc">Name Z–A</option><option value="folder" data-i18n="sortFolder">Folder</option></select>
+          </div>
+        </div>
+
+        <div class="gallery-toolbar">
+          <div><h3 data-i18n="galleryTitle">Image collection</h3><p id="resultsText" data-i18n="galleryEmpty">Select your folder to begin browsing.</p></div>
+          <div class="view-switch"><button id="gridView" class="view-button active" aria-label="Grid view">▦</button><button id="listView" class="view-button" aria-label="List view">☷</button></div>
+        </div>
+        <div id="gallery" class="gallery">
+          <div class="empty-state">
+            <div class="empty-illustration"><span>▧</span><i></i><i></i><i></i></div>
+            <h3 data-i18n="emptyTitle">Your gallery starts here</h3>
+            <p data-i18n="emptyText">Select the N folder above to load your Assembly and Cutting image library.</p>
+          </div>
+        </div>
+        <div class="footer-note"><span class="footer-dot"></span><span data-i18n="footerText">Private by design · No upload · No account · No server</span><span class="footer-right">N / GALLERY 1.0</span></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="closeLightbox" class="lightbox-close" aria-label="Close preview">×</button>
+    <button id="prevImage" class="lightbox-nav prev" aria-label="Previous image">‹</button>
+    <div class="lightbox-content"><img id="lightboxImage" alt=""><div class="lightbox-caption"><strong id="lightboxName"></strong><span id="lightboxPath"></span></div></div>
+    <button id="nextImage" class="lightbox-nav next" aria-label="Next image">›</button>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
