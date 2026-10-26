@@ -107,6 +107,53 @@
     <div class="lightbox-content"><img id="lightboxImage" alt=""><div class="lightbox-caption"><strong id="lightboxName"></strong><span id="lightboxPath"></span></div></div>
     <button id="nextImage" class="lightbox-nav next" aria-label="Next image">›</button>
   </div>
+  <style>
+    .developer-card {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      width: min(260px, calc(100vw - 32px));
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 16px;
+      color: #f7f8ff;
+      background: linear-gradient(135deg, rgba(34, 38, 59, .96), rgba(18, 21, 35, .96));
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .3);
+      backdrop-filter: blur(12px);
+      animation: developer-card-enter .65s ease-out both, developer-card-glow 4s ease-in-out 1s infinite;
+    }
+    .developer-card-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .developer-card-icon {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 11px;
+      color: white;
+      background: linear-gradient(135deg, #8b7cff, #fb8b62);
+      font-size: 18px;
+    }
+    .developer-card-label { display: block; color: #b9bfd2; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
+    .developer-card-name { display: block; margin-top: 2px; font-size: 15px; font-weight: 700; }
+    .developer-card-contact { display: grid; gap: 7px; color: #d8dced; font-size: 12px; }
+    .developer-card-contact span { display: flex; align-items: center; gap: 8px; overflow-wrap: anywhere; }
+    .developer-card-contact b { width: 15px; color: #aaa0ff; text-align: center; }
+    @keyframes developer-card-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes developer-card-glow { 50% { box-shadow: 0 14px 40px rgba(104, 91, 205, .28); } }
+    @media (max-width: 520px) { .developer-card { right: 12px; bottom: 12px; } }
+    @media (prefers-reduced-motion: reduce) { .developer-card { animation: none; } }
+  </style>
+  <aside class="developer-card" aria-label="Developer information">
+    <div class="developer-card-heading">
+      <span class="developer-card-icon" aria-hidden="true">✦</span>
+      <span><span class="developer-card-label">Developed by</span><strong class="developer-card-name">Eren Jeager</strong></span>
+    </div>
+    <div class="developer-card-contact">
+      <span><b aria-hidden="true">✉</b> eren@gamil.com</span>
+      <span><b aria-hidden="true">⌘</b> GitHub: eren@gmail</span>
+    </div>
+  </aside>
   <script src="app.js"></script>
 </body>
 </html>
